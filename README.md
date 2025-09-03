@@ -35,13 +35,13 @@ Sigue estos pasos para poner en marcha el proyecto:
 
 Abre tu terminal y ejecuta los siguientes comandos:
 
-\`\`\`bash
+```bash
 git clone https://github.com/franciscopazf/laravel-saas-starter
 cd laravel-saas-starter
 composer install
 npm install
 npm run build
-\`\`\`
+```
 
 > 💡 Para producción, puedes usar \`npm run build\` en lugar de \`npm run dev\`.
 
@@ -50,18 +50,18 @@ npm run build
 Para que la multitenencia por subdominio funcione correctamente en tu entorno local, necesitas editar tu archivo de hosts.
 
 * **En Linux o macOS**:
-    \`\`\`bash
+  ```bash
     sudo nano /etc/hosts
-    \`\`\`
+   ```
 * **En Windows**: Edita el archivo en \`C:\\Windows\\System32\\drivers\\etc\\hosts\` como administrador.
 
 Agrega las siguientes líneas:
 
-\`\`\`
+```bash
 127.0.0.1 devapp.local
 127.0.0.1 comunidad1.devapp.local
 127.0.0.1 jacalito.devapp.local
-\`\`\`
+```
 
 > ⚠️ Estos son ejemplos. \`devapp.local\` es el dominio principal y \`comunidad1.devapp.local\` y \`jacalito.devapp.local\` son los subdominios que actúan como tenants. Puedes cambiar sus nombres si lo deseas, pero asegúrate de mantener la estructura de subdominio.
 
@@ -73,43 +73,43 @@ Este starter kit utiliza **WorkOS** para la autenticación centralizada.
 * **Regístrate en WorkOS**: Crea una cuenta en la plataforma.
 * **Obtén tus credenciales**: Una vez registrado, ve a tu panel de control de WorkOS para encontrar tu **Client ID** y **API Key**.
 * **Actualiza el archivo \`.env\`**: Copia tus credenciales en el archivo \`.env\` de tu proyecto:
-    \`\`\`
+    ```bash
     WORKOS_CLIENT_ID=tu_client_id_de_workos
     WORKOS_API_KEY=tu_api_key_de_workos
-    \`\`\`
+    ```
 * **Configura la URL de redirección**: En tu panel de WorkOS, configura la URL de redirección (Redirect URI) a \`http://devapp.local:8000/authenticate\`. Esta URL es a la que WorkOS redirigirá al usuario después de la autenticación.
 
 ### 4. Configurar el Correo Electrónico del Administrador
 
 En el archivo \`.env\`, establece tu dirección de correo electrónico para el administrador:
 
-\`\`\`
+```bash
 MAIL_ADMIN_ADDRESS=tu_correo_de_administrador@gmail.com
-\`\`\`
+```
 
 ### 5. Ejecutar Migraciones y Sincronizar Permisos
 
 Ahora, es momento de preparar la base de datos y los permisos del sistema.
 
-\`\`\`bash
+```bash
 php artisan migrate --seed
-\`\`\`
+```
 > Este comando ejecuta las migraciones para crear las tablas necesarias y siembra la base de datos con datos de prueba, incluyendo el usuario administrador y los roles iniciales.
 
 A continuación, sincroniza los permisos con el paquete de Laravel Routingkit:
 
-\`\`\`bash
+```bash
 php artisan rk:ac
-\`\`\`
+```
 > Este comando te pedirá confirmación; simplemente escribe \`yes\` y presiona **Enter**.
 
 ### 6. Iniciar el Servidor Local
 
 Finalmente, inicia el servidor de Laravel para ver tu aplicación en acción:
 
-\`\`\`bash
+```bash
 php artisan serve
-\`\`\`
+```
 
 Tu aplicación debería estar disponible en tu navegador en \`devapp.local:8000\`.
 
